@@ -14,8 +14,6 @@ import JPA20240411.model.Materia;
 import JPA20240411.model.Profesor;
 import JPA20240411.model.ValoracionMateria;
 
-
-
 public class Controlador {
 
 	private static String nombreTabla = "";
@@ -39,8 +37,6 @@ public class Controlador {
 				.createNativeQuery("SELECT * FROM " + nombreTabla + ";", this.tipoEntidad).getResultList();
 
 	}
-	
-	
 
 	protected static EntityManager getEntityManager() {
 		if (em == null) {
@@ -55,14 +51,12 @@ public class Controlador {
 					"SELECT * FROM valoracionmateria where " + e.getId() + " = idEstudiante and " + p.getId()
 							+ " = idProfesor and " + m.getId() + " = idMateria and " + nota + " = valoracion;",
 					ValoracionMateria.class).getSingleResult();
-		}
-		catch (NoResultException ex) {
+		} catch (NoResultException ex) {
 			return null;
 		}
-		
+
 	}
-	
-	
+
 	public static void insert(Estudiante e, Profesor p, Materia m, Integer nota, Date fecha) {
 		ValoracionMateria v = new ValoracionMateria();
 		v.setIdEstudiante(e.getId());
@@ -70,41 +64,35 @@ public class Controlador {
 		v.setIdProfesor(p.getId());
 		v.setValoracion(nota);
 		v.setFecha(fecha);
-		
-		
+
 		em.getTransaction().begin();
 		em.persist(v);
 		em.getTransaction().commit();
-		
+
 	}
-	
-	
+
 	public static void update(Estudiante e, Profesor p, Materia m, Integer nota, Date fecha) {
 		ValoracionMateria v = obtenerValoracionSinNota(e, p, m);
-		
+
 		v.setValoracion(nota);
 		v.setFecha(fecha);
-		
+
 		em.getTransaction().begin();
 		em.persist(v);
 		em.getTransaction().commit();
-		
-		
-		
-		
+
 	}
-	
+
 	public static ValoracionMateria obtenerValoracionSinNota(Estudiante e, Profesor p, Materia m) {
 		try {
-			return (ValoracionMateria) getEntityManager().createNativeQuery(
-					"SELECT * FROM valoracionmateria where " + e.getId() + " = idEstudiante and " + p.getId()
-							+ " = idProfesor and " + m.getId() + " = idMateria;",
-					ValoracionMateria.class).getSingleResult();
-		}
-		catch (NoResultException ex) {
+			return (ValoracionMateria) getEntityManager()
+					.createNativeQuery("SELECT * FROM valoracionmateria where " + e.getId() + " = idEstudiante and "
+							+ p.getId() + " = idProfesor and " + m.getId() + " = idMateria;", ValoracionMateria.class)
+					.getSingleResult();
+		} catch (NoResultException ex) {
 			return null;
 		}
-		
+
 	}
 
 	public static Entidad getPrimero() {

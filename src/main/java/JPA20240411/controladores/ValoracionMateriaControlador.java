@@ -17,11 +17,10 @@ import JPA20240411.model.Materia;
 import JPA20240411.model.Profesor;
 import JPA20240411.model.ValoracionMateria;
 
-
-public class ValoracionMateriaControlador extends Controlador{
+public class ValoracionMateriaControlador extends Controlador {
 
 	public ValoracionMateriaControlador() {
 		super("valoracionmateria", ValoracionMateria.class);
-	}	
+	}
 
 }

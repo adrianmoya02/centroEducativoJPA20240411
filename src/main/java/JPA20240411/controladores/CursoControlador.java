@@ -15,44 +15,35 @@ import javax.persistence.Query;
 
 import JPA20240411.model.Curso;
 
-
 public class CursoControlador extends Controlador {
-	
+
 	public CursoControlador(String nombreTabla, Class tipoEntidad) {
 		super(nombreTabla, tipoEntidad);
 		// TODO Auto-generated constructor stub
 	}
 
+	private static EntityManager em = Persistence.createEntityManagerFactory("CentroEducativo").createEntityManager();
 
-	private static EntityManager em =  Persistence.createEntityManagerFactory("CentroEducativo").createEntityManager();
-	
 	private static String nombreTabla = "curso";
 
-	
-	
 	public static Curso getPrimero() {
-		Query q  = em.createNativeQuery("Select min(id) from "  + nombreTabla);
+		Query q = em.createNativeQuery("Select min(id) from " + nombreTabla);
 		int primerId = (int) q.getSingleResult();
 		Curso c = em.find(Curso.class, primerId);
 		return c;
 	}
 
 	public static Curso getUltimo() {
-		Query q  = em.createNativeQuery("Select max(id) from "  + nombreTabla);
+		Query q = em.createNativeQuery("Select max(id) from " + nombreTabla);
 		int primerId = (int) q.getSingleResult();
 		Curso c = em.find(Curso.class, primerId);
 		return c;
 	}
 
-	
 	public static Curso getFabricanteSiguienteAnterior(int id) {
 		return null;
 
-
 	}
-	
-	
-	
 
 	public static Curso getEntidad(Connection conn, String sql) throws SQLException {
 		Statement s = conn.createStatement();
@@ -67,26 +58,11 @@ public class CursoControlador extends Controlador {
 		}
 		return o;
 	}
-	
-	
-	public static List<Curso> getTodos(){
-		List<Curso> l = new ArrayList<Curso>();
-		
 
-		
+	public static List<Curso> getTodos() {
+		List<Curso> l = new ArrayList<Curso>();
+
 		return l;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

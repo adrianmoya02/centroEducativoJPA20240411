@@ -8,17 +8,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "curso")
-public class Curso extends Entidad{
+public class Curso extends Entidad {
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String descripcion;
-	
-	
-	
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return descripcion;
@@ -27,19 +22,21 @@ public class Curso extends Entidad{
 	public Curso() {
 		super();
 	}
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
+
 }

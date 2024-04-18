@@ -16,30 +16,19 @@ import javax.persistence.Query;
 import JPA20240411.model.Estudiante;
 import JPA20240411.model.Materia;
 
-
-
 public class EstudianteControlador extends Controlador {
 	private static EstudianteControlador instance = null;
-	
+
 	public EstudianteControlador() {
 		super("estudiante", Estudiante.class);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public static EstudianteControlador getInstance() {
 		if (instance == null) {
 			instance = new EstudianteControlador();
 		}
 		return instance;
 	}
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
 }

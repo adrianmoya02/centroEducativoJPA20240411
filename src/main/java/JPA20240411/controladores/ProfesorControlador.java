@@ -16,8 +16,7 @@ import javax.persistence.Query;
 import JPA20240411.model.Materia;
 import JPA20240411.model.Profesor;
 
-
-public class ProfesorControlador extends Controlador{
+public class ProfesorControlador extends Controlador {
 	private static ProfesorControlador instance = null;
 
 	public ProfesorControlador() {
@@ -30,9 +29,5 @@ public class ProfesorControlador extends Controlador{
 		}
 		return instance;
 	}
-	
-	
-	
-	
-	
+
 }

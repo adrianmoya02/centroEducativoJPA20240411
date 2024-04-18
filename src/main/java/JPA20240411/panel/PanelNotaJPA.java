@@ -36,15 +36,15 @@ import java.awt.Color;
 public class PanelNotaJPA extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	
-	private JList <Estudiante>listSeleccionados;
-	private JList <Estudiante>listNOSeleccionados;
-	private DefaultListModel<Estudiante> listModelNOSeleccionados;
-	private DefaultListModel<Estudiante> listModelSeleccionados ;
 
-	private JComboBox <Materia>jcbMateria;
-	private JComboBox <Profesor>jcbProfesor;
-	private JComboBox <Integer>jcbNota;
+	private JList<Estudiante> listSeleccionados;
+	private JList<Estudiante> listNOSeleccionados;
+	private DefaultListModel<Estudiante> listModelNOSeleccionados;
+	private DefaultListModel<Estudiante> listModelSeleccionados;
+
+	private JComboBox<Materia> jcbMateria;
+	private JComboBox<Profesor> jcbProfesor;
+	private JComboBox<Integer> jcbNota;
 	JFormattedTextField jftfFecha;
 	Date fechaAhora;
 
@@ -53,17 +53,17 @@ public class PanelNotaJPA extends JPanel {
 	 */
 	public PanelNotaJPA() {
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 255, 128));
 		add(panel, BorderLayout.NORTH);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_panel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel lblMateria = new JLabel("Materia:");
 		GridBagConstraints gbc_lblMateria = new GridBagConstraints();
 		gbc_lblMateria.insets = new Insets(0, 0, 5, 5);
@@ -71,15 +71,15 @@ public class PanelNotaJPA extends JPanel {
 		gbc_lblMateria.gridx = 0;
 		gbc_lblMateria.gridy = 0;
 		panel.add(lblMateria, gbc_lblMateria);
-		
-		 jcbMateria = new JComboBox<Materia>();
+
+		jcbMateria = new JComboBox<Materia>();
 		GridBagConstraints gbc_jcbMateria = new GridBagConstraints();
 		gbc_jcbMateria.insets = new Insets(0, 0, 5, 0);
 		gbc_jcbMateria.fill = GridBagConstraints.HORIZONTAL;
 		gbc_jcbMateria.gridx = 1;
 		gbc_jcbMateria.gridy = 0;
 		panel.add(jcbMateria, gbc_jcbMateria);
-		
+
 		JLabel lblProfesor = new JLabel("Profesor:");
 		GridBagConstraints gbc_lblProfesor = new GridBagConstraints();
 		gbc_lblProfesor.anchor = GridBagConstraints.EAST;
@@ -87,15 +87,15 @@ public class PanelNotaJPA extends JPanel {
 		gbc_lblProfesor.gridx = 0;
 		gbc_lblProfesor.gridy = 1;
 		panel.add(lblProfesor, gbc_lblProfesor);
-		
-		 jcbProfesor = new JComboBox<Profesor>();
+
+		jcbProfesor = new JComboBox<Profesor>();
 		GridBagConstraints gbc_jcbProfesor = new GridBagConstraints();
 		gbc_jcbProfesor.insets = new Insets(0, 0, 5, 0);
 		gbc_jcbProfesor.fill = GridBagConstraints.HORIZONTAL;
 		gbc_jcbProfesor.gridx = 1;
 		gbc_jcbProfesor.gridy = 1;
 		panel.add(jcbProfesor, gbc_jcbProfesor);
-		
+
 		JLabel lblNota = new JLabel("Nota:");
 		GridBagConstraints gbc_lblNota = new GridBagConstraints();
 		gbc_lblNota.anchor = GridBagConstraints.EAST;
@@ -103,22 +103,22 @@ public class PanelNotaJPA extends JPanel {
 		gbc_lblNota.gridx = 0;
 		gbc_lblNota.gridy = 2;
 		panel.add(lblNota, gbc_lblNota);
-		
-		 jcbNota = new JComboBox<Integer>();
+
+		jcbNota = new JComboBox<Integer>();
 		GridBagConstraints gbc_jcbNota = new GridBagConstraints();
 		gbc_jcbNota.insets = new Insets(0, 0, 5, 0);
 		gbc_jcbNota.fill = GridBagConstraints.HORIZONTAL;
 		gbc_jcbNota.gridx = 1;
 		gbc_jcbNota.gridy = 2;
 		panel.add(jcbNota, gbc_jcbNota);
-		
+
 		JButton btnActualizarAlumnado = new JButton("Actualizar Alumnado");
 		btnActualizarAlumnado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				actualizarAlumnado();
 			}
 		});
-		
+
 		JLabel lblFecha = new JLabel("Fecha:");
 		GridBagConstraints gbc_lblFecha = new GridBagConstraints();
 		gbc_lblFecha.anchor = GridBagConstraints.EAST;
@@ -126,7 +126,7 @@ public class PanelNotaJPA extends JPanel {
 		gbc_lblFecha.gridx = 0;
 		gbc_lblFecha.gridy = 3;
 		panel.add(lblFecha, gbc_lblFecha);
-		
+
 		jftfFecha = getJFormattedTextFieldDatePersonalizado();
 		GridBagConstraints gbc_jftfFecha = new GridBagConstraints();
 		gbc_jftfFecha.insets = new Insets(0, 0, 5, 0);
@@ -138,10 +138,10 @@ public class PanelNotaJPA extends JPanel {
 		gbc_btnActualizarAlumnado.gridx = 1;
 		gbc_btnActualizarAlumnado.gridy = 4;
 		panel.add(btnActualizarAlumnado, gbc_btnActualizarAlumnado);
-		
+
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.SOUTH);
-		
+
 		JButton btnGuardarNotaAlumnos = new JButton("Guardar Nota Alumnos Seleccionados");
 		btnGuardarNotaAlumnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,38 +149,38 @@ public class PanelNotaJPA extends JPanel {
 			}
 		});
 		panel_1.add(btnGuardarNotaAlumnos);
-		
+
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel_2.rowHeights = new int[]{0, 0, 0};
-		gbl_panel_2.columnWeights = new double[]{1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_2.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_2.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_panel_2.rowHeights = new int[] { 0, 0, 0 };
+		gbl_panel_2.columnWeights = new double[] { 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel_2.rowWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
 		panel_2.setLayout(gbl_panel_2);
-		
+
 		JLabel lblAlumnosNoSeleccionados = new JLabel("Alumnos NO Seleccionados");
 		GridBagConstraints gbc_lblAlumnosNoSeleccionados = new GridBagConstraints();
 		gbc_lblAlumnosNoSeleccionados.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAlumnosNoSeleccionados.gridx = 0;
 		gbc_lblAlumnosNoSeleccionados.gridy = 0;
 		panel_2.add(lblAlumnosNoSeleccionados, gbc_lblAlumnosNoSeleccionados);
-		
+
 		JLabel lblAlumnosSeleccionados = new JLabel("Alumnos Seleccionados");
 		GridBagConstraints gbc_lblAlumnosSeleccionados = new GridBagConstraints();
 		gbc_lblAlumnosSeleccionados.insets = new Insets(0, 0, 5, 0);
 		gbc_lblAlumnosSeleccionados.gridx = 4;
 		gbc_lblAlumnosSeleccionados.gridy = 0;
 		panel_2.add(lblAlumnosSeleccionados, gbc_lblAlumnosSeleccionados);
-		
-		 listNOSeleccionados = new JList(this.getListModelNOSeleccionados());
+
+		listNOSeleccionados = new JList(this.getListModelNOSeleccionados());
 		GridBagConstraints gbc_listNOSeleccionados = new GridBagConstraints();
 		gbc_listNOSeleccionados.insets = new Insets(0, 0, 0, 5);
 		gbc_listNOSeleccionados.fill = GridBagConstraints.BOTH;
 		gbc_listNOSeleccionados.gridx = 0;
 		gbc_listNOSeleccionados.gridy = 1;
 		panel_2.add(listNOSeleccionados, gbc_listNOSeleccionados);
-		
+
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(255, 128, 128));
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -191,12 +191,12 @@ public class PanelNotaJPA extends JPanel {
 		gbc_panel_3.gridy = 1;
 		panel_2.add(panel_3, gbc_panel_3);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
-		gbl_panel_3.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_panel_3.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gbl_panel_3.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_3.columnWidths = new int[] { 0, 0, 0, 0 };
+		gbl_panel_3.rowHeights = new int[] { 0, 0, 0, 0, 0 };
+		gbl_panel_3.columnWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
-		
+
 		JButton btnPasarTodos = new JButton(">>");
 		btnPasarTodos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -208,7 +208,7 @@ public class PanelNotaJPA extends JPanel {
 		gbc_btnPasarTodos.gridx = 1;
 		gbc_btnPasarTodos.gridy = 0;
 		panel_3.add(btnPasarTodos, gbc_btnPasarTodos);
-		
+
 		JButton btnPasar1 = new JButton(">");
 		btnPasar1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -220,7 +220,7 @@ public class PanelNotaJPA extends JPanel {
 		gbc_btnPasar1.gridx = 1;
 		gbc_btnPasar1.gridy = 1;
 		panel_3.add(btnPasar1, gbc_btnPasar1);
-		
+
 		JButton btnQuitar1 = new JButton("<");
 		btnQuitar1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -232,7 +232,7 @@ public class PanelNotaJPA extends JPanel {
 		gbc_btnQuitar1.gridx = 1;
 		gbc_btnQuitar1.gridy = 2;
 		panel_3.add(btnQuitar1, gbc_btnQuitar1);
-		
+
 		JButton btnQuitarTodos = new JButton("<<");
 		btnQuitarTodos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -244,8 +244,8 @@ public class PanelNotaJPA extends JPanel {
 		gbc_btnQuitarTodos.gridx = 1;
 		gbc_btnQuitarTodos.gridy = 3;
 		panel_3.add(btnQuitarTodos, gbc_btnQuitarTodos);
-		
-		 listSeleccionados = new JList(this.getListModelSeleccionados());
+
+		listSeleccionados = new JList(this.getListModelSeleccionados());
 		GridBagConstraints gbc_listSeleccionados = new GridBagConstraints();
 		gbc_listSeleccionados.fill = GridBagConstraints.BOTH;
 		gbc_listSeleccionados.gridx = 4;
@@ -255,11 +255,10 @@ public class PanelNotaJPA extends JPanel {
 		cargarTodosProfesores();
 		cargarNotas();
 	}
-	
+
 	private JFormattedTextField getJFormattedTextFieldDatePersonalizado() {
-		
-		this.jftfFecha = new JFormattedTextField(
-				new JFormattedTextField.AbstractFormatter() {
+
+		this.jftfFecha = new JFormattedTextField(new JFormattedTextField.AbstractFormatter() {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 			@Override
@@ -282,107 +281,103 @@ public class PanelNotaJPA extends JPanel {
 				}
 			}
 		});
-		
+
 		return this.jftfFecha;
 	}
-	
-	
-	
-	private void guardar(){
-	
+
+	private void guardar() {
 
 		List<Estudiante> estudiantes = getEstudiantesSeleccionados();
 		if (estudiantes != null) {
 
 			for (Estudiante estudiante : estudiantes) {
-				
-				if (Controlador.obtenerValoracionSinNota(estudiante, (Profesor)this.jcbProfesor.getSelectedItem(), (Materia)this.jcbMateria.getSelectedItem()) == null) {
-					
-					
-					ValoracionMateriaControlador.insert(estudiante, (Profesor)this.jcbProfesor.getSelectedItem(), (Materia)this.jcbMateria.getSelectedItem(), (Integer)this.jcbNota.getSelectedItem(), fechaAhora);
-				}
-				else {
-					ValoracionMateriaControlador.update(estudiante, (Profesor)this.jcbProfesor.getSelectedItem(), (Materia)this.jcbMateria.getSelectedItem(), (Integer)this.jcbNota.getSelectedItem(), fechaAhora);;
+
+				if (Controlador.obtenerValoracionSinNota(estudiante, (Profesor) this.jcbProfesor.getSelectedItem(),
+						(Materia) this.jcbMateria.getSelectedItem()) == null) {
+
+					ValoracionMateriaControlador.insert(estudiante, (Profesor) this.jcbProfesor.getSelectedItem(),
+							(Materia) this.jcbMateria.getSelectedItem(), (Integer) this.jcbNota.getSelectedItem(),
+							fechaAhora);
+				} else {
+					ValoracionMateriaControlador.update(estudiante, (Profesor) this.jcbProfesor.getSelectedItem(),
+							(Materia) this.jcbMateria.getSelectedItem(), (Integer) this.jcbNota.getSelectedItem(),
+							fechaAhora);
+					;
 				}
 			}
-			
-			
+
 		}
 
-		
-		
 	}
-	
+
 	private List<Estudiante> getEstudiantesSeleccionados() {
-		
+
 		List<Estudiante> l = new ArrayList<Estudiante>();
 		for (int i = 0; i < this.listModelSeleccionados.size(); i++) {
 			Estudiante e = this.listModelSeleccionados.get(i);
 			l.add(this.listModelSeleccionados.get(i));
 		}
-		
+
 		return l;
 	}
-	
+
 	private void pasarUnoASeleccionado() {
 		Estudiante selectedEstudiante = null;
 		int selectedIndex = listNOSeleccionados.getSelectedIndex();
 
 		if (selectedIndex != -1) {
-		     selectedEstudiante = listModelNOSeleccionados.getElementAt(selectedIndex);
-		    
-		} 
-		
+			selectedEstudiante = listModelNOSeleccionados.getElementAt(selectedIndex);
+
+		}
+
 		listModelSeleccionados.addElement(selectedEstudiante);
 		listModelNOSeleccionados.remove(selectedIndex);
 
 	}
-	
+
 	private void quitarUnoDeSeleccionado() {
 		Estudiante selectedEstudiante = null;
 		int selectedIndex = listSeleccionados.getSelectedIndex();
 
 		// Verifica si hay algún elemento seleccionado
 		if (selectedIndex != -1) {
-		    // Obten el objeto correspondiente del DefaultListModel
-		     selectedEstudiante = listModelSeleccionados.getElementAt(selectedIndex);
-		    
-		    // Ahora puedes manipular el objeto seleccionado como desees
-		} 
-		
+			// Obten el objeto correspondiente del DefaultListModel
+			selectedEstudiante = listModelSeleccionados.getElementAt(selectedIndex);
+
+			// Ahora puedes manipular el objeto seleccionado como desees
+		}
+
 		listModelNOSeleccionados.addElement(selectedEstudiante);
 		listModelSeleccionados.remove(selectedIndex);
 
 	}
-	
+
 	private void pasarTodosASeleccionados() {
-		
+
 		this.listModelSeleccionados.removeAllElements();
-		
-		
+
 		List<Estudiante> estudiantes = (List<Estudiante>) EstudianteControlador.getInstance().findAll();
 
 		for (Estudiante estudiante : estudiantes) {
 			this.listModelSeleccionados.addElement(estudiante);
 		}
-		
+
 		this.listModelNOSeleccionados.removeAllElements();
 	}
-	
+
 	private void quitarTodosDeSeleccionados() {
 		this.listModelNOSeleccionados.removeAllElements();
-		
 
 		List<Estudiante> estudiantes = (List<Estudiante>) EstudianteControlador.getInstance().findAll();
 
 		for (Estudiante estudiante : estudiantes) {
 			this.listModelNOSeleccionados.addElement(estudiante);
 		}
-		
+
 		this.listModelSeleccionados.removeAllElements();
-		
+
 	}
-	
+
 	private void cargarNotas() {
 		jcbNota.addItem(Integer.parseInt("0"));
 		jcbNota.addItem(Integer.parseInt("1"));
@@ -397,7 +392,7 @@ public class PanelNotaJPA extends JPanel {
 		jcbNota.addItem(Integer.parseInt("10"));
 
 	}
-	
+
 	private void cargarTodasMaterias() {
 		List<Materia> l = (List<Materia>) new MateriaControlador().getInstance().findAll();
 		for (Materia o : l) {
@@ -405,7 +400,7 @@ public class PanelNotaJPA extends JPanel {
 		}
 
 	}
-	
+
 	private void cargarTodosProfesores() {
 		List<Profesor> l = (List<Profesor>) new ProfesorControlador().getInstance().findAll();
 		for (Profesor o : l) {
@@ -413,27 +408,27 @@ public class PanelNotaJPA extends JPanel {
 		}
 
 	}
-	
-	private void actualizarAlumnado(){
+
+	private void actualizarAlumnado() {
 		this.listModelNOSeleccionados.clear();
 		this.listModelSeleccionados.clear();
-		
+
 		List<Estudiante> estudiantes = (List<Estudiante>) EstudianteControlador.getInstance().findAll();
 
 		for (Estudiante estudiante : estudiantes) {
-			if (Controlador.obtenerValoracion(estudiante, (Profesor)this.jcbProfesor.getSelectedItem(), (Materia)this.jcbMateria.getSelectedItem(), (Integer)this.jcbNota.getSelectedItem() ) != null) {
+			if (Controlador.obtenerValoracion(estudiante, (Profesor) this.jcbProfesor.getSelectedItem(),
+					(Materia) this.jcbMateria.getSelectedItem(), (Integer) this.jcbNota.getSelectedItem()) != null) {
 				this.listModelSeleccionados.addElement(estudiante);
-			}
-			else {
+			} else {
 				this.listModelNOSeleccionados.addElement(estudiante);
 
 			}
 		}
-		
+
 	}
 
 	public DefaultListModel<Estudiante> getListModelNOSeleccionados() {
-		if(this.listNOSeleccionados == null) {
+		if (this.listNOSeleccionados == null) {
 			this.listModelNOSeleccionados = new DefaultListModel<Estudiante>();
 
 		}

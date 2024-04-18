@@ -12,15 +12,13 @@ import javax.persistence.Table;
 @Table(name = "valoracionmateria")
 public class ValoracionMateria extends Entidad {
 
-
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int idProfesor, idMateria, idEstudiante;
 	private float valoracion;
-	
+
 	private Date fecha;
-	
 
 	public Date getFecha() {
 		return fecha;
@@ -70,12 +68,4 @@ public class ValoracionMateria extends Entidad {
 		this.valoracion = valoracion;
 	}
 
-
-	
-	
-	
-	
-	
-
-	
 }
