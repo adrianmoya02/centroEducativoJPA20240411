@@ -1,74 +1,45 @@
 package JPA20240411.controladores;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import tutorialJava.modelosBasesDeDatosComunesJPA.Controlador;
-import tutorialJava.modelosBasesDeDatosComunesJPA.Entidad;
-import tutorialJava.modelosBasesDeDatosComunesJPA.evaluacionCentroEducativo.Estudiante;
+import JPA20240411.model.Estudiante;
+import JPA20240411.model.Materia;
+
+
 
 public class EstudianteControlador extends Controlador {
-
-	// instancia del singleton
-	private static EstudianteControlador instancia = null;
-
-	/**
-	 * 
-	 */
+	private static EstudianteControlador instance = null;
+	
 	public EstudianteControlador() {
-		super(Estudiante.class, "EvaluacionCentroEducativo");
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public static EstudianteControlador getInstancia() {
-		if (instancia == null) {
-			instancia = new EstudianteControlador();
-		}
-		return instancia;
-	}
-
-	@Override
-	public Estudiante findFirst() {
-		return (Estudiante) super.findFirst();
-	}
-
-	@Override
-	public Estudiante findLast() {
-		return (Estudiante) super.findLast();
-	}
-
-	@Override
-	public Estudiante findNext(Entidad e) {
-		return (Estudiante) super.findNext(e);
-	}
-
-	@Override
-	public Estudiante findPrevious(Entidad e) {
-		return (Estudiante) super.findPrevious(e);
+		super("estudiante", Estudiante.class);
+		// TODO Auto-generated constructor stub
 	}
 	
-	
-	/**
-	 * 
-	 */
-	public List<Estudiante> findAllEstudiantes() {
-		List<Estudiante> resultado = new ArrayList<Estudiante>();
-		EntityManager em = getEntityManagerFactory().createEntityManager();
-		
-		try {
-			Query q = em.createNativeQuery("Select * from estudiante", Estudiante.class);
-			resultado = (List<Estudiante>) q.getResultList();
-		} catch (Exception e) {
+	public static EstudianteControlador getInstance() {
+		if (instance == null) {
+			instance = new EstudianteControlador();
 		}
-		em.close();
-		return resultado;
+		return instance;
 	}
+	
 
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -1,10 +1,12 @@
 package JPA20240411.model;
 
 public abstract class Entidad {
-
-	public Entidad () {
+	
+	
+	public Entidad() {
 		super();
 	}
 	
-	public abstract int getId();	
+	public abstract int getId();
+
 }

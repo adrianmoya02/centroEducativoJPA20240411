@@ -1,72 +1,81 @@
 package JPA20240411.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-
-/**
- * The persistent class for the valoracionmateria database table.
- * 
- */  
 @Entity
-@NamedQuery(name="ValoracionMateria.findAll", query="SELECT v FROM ValoracionMateria v")
+@Table(name = "valoracionmateria")
 public class ValoracionMateria extends Entidad {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int id;
-
+	private int idProfesor, idMateria, idEstudiante;
 	private float valoracion;
+	
+	private Date fecha;
+	
 
-	private Estudiante estudiante;
-	private Materia materia;
-	private Profesor profesor;
+	public Date getFecha() {
+		return fecha;
+	}
 
-	public ValoracionMateria() {
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	public int getIdProfesor() {
+		return idProfesor;
+	}
+
+	public void setIdProfesor(int idProfesor) {
+		this.idProfesor = idProfesor;
+	}
+
+	public int getIdMateria() {
+		return idMateria;
+	}
+
+	public void setIdMateria(int idMateria) {
+		this.idMateria = idMateria;
+	}
+
+	public int getIdEstudiante() {
+		return idEstudiante;
+	}
+
+	public void setIdEstudiante(int idEstudiante) {
+		this.idEstudiante = idEstudiante;
+	}
 
 	public float getValoracion() {
-		return this.valoracion;
+		return valoracion;
 	}
 
 	public void setValoracion(float valoracion) {
 		this.valoracion = valoracion;
 	}
 
-	public Estudiante getEstudiante() {
-		return estudiante;
-	}
 
-	public void setEstudiante(Estudiante estudiante) {
-		this.estudiante = estudiante;
-	}
+	
+	
+	
+	
+	
 
-	public Materia getMateria() {
-		return materia;
-	}
-
-	public void setMateria(Materia materia) {
-		this.materia = materia;
-	}
-
-	public Profesor getProfesor() {
-		return profesor;
-	}
-
-	public void setProfesor(Profesor profesor) {
-		this.profesor = profesor;
-	}
-
-
+	
 }

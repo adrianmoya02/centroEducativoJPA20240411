@@ -1,75 +1,182 @@
 package JPA20240411.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-
-import java.util.List;
-
-
-/**
- * The persistent class for the profesor database table.
- * 
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@NamedQuery(name="Profesor.findAll", query="SELECT p FROM Profesor p")
-public class Profesor extends Entidad  {
-
+@Table(name="profesor")
+public class Profesor extends Entidad{
+	@Override
+	public String toString() {
+		return ( nombre + " "+ apellido_1 + " " + apellido_2 );
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+
 	private int id;
-
-	@Column(name="nombre")
-	private String nombre;
+	
+	private int idSexo;
+	
+	
 	@Column(name="apellido1")
-	private String primerApellido;
-
+	private String apellido_1;
+	
 	@Column(name="apellido2")
-	private String segundoApellido;
+	private String apellido_2;
+	
+	
+	private String nombre, dni, direccion, mail, telefono, colorFavorito;
+	private byte[] imagen;
+	
+	
+	
+	
+	public String getColorFavorito() {
+		return colorFavorito;
+	}
+
+
+
+
+
+	public void setColorFavorito(String colorFavorito) {
+		this.colorFavorito = colorFavorito;
+	}
+
+
+
+
+
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+
+
+
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+
+
+
 
 
 	public Profesor() {
+		super();
+	}
+	
+	
+
+	
+	
+	public int getIdSexo() {
+		return idSexo;
 	}
 
+
+
+
+
+	public void setIdSexo(int idSexo) {
+		this.idSexo = idSexo;
+	}
+
+
+
+
+
+	public String getApellido_1() {
+		return apellido_1;
+	}
+
+
+
+	public void setApellido_1(String apellido_1) {
+		this.apellido_1 = apellido_1;
+	}
+
+
+
+	public String getApellido_2() {
+		return apellido_2;
+	}
+
+
+
+	public void setApellido_2(String apellido_2) {
+		this.apellido_2 = apellido_2;
+	}
+
+
+
+	public String getDni() {
+		return dni;
+	}
+
+
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+
+
+	public String getMail() {
+		return mail;
+	}
+
+
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+
+
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getPrimerApellido() {
-		return this.primerApellido;
-	}
-
-	public void setPrimerApellido(String primerApellido) {
-		this.primerApellido = primerApellido;
-	}
-
-	public String getSegundoApellido() {
-		return this.segundoApellido;
-	}
-
-	public void setSegundoApellido(String segundoApellido) {
-		this.segundoApellido = segundoApellido;
-	}
-
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-	@Override
-	public String toString() {
-		return nombre + " " + primerApellido + " " + segundoApellido;
-	}
-
+	
 }

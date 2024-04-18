@@ -1,75 +1,20 @@
 package JPA20240411.controladores;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
-
-import tutorialJava.modelosBasesDeDatosComunesJPA.Controlador;
-import tutorialJava.modelosBasesDeDatosComunesJPA.Entidad;
-import tutorialJava.modelosBasesDeDatosComunesJPA.evaluacionCentroEducativo.Curso;
-import tutorialJava.modelosBasesDeDatosComunesJPA.evaluacionCentroEducativo.Materia;
+import JPA20240411.model.Materia;
 
 public class MateriaControlador extends Controlador {
 
-	// instancia del singleton
-	private static MateriaControlador instancia = null;
+	private static MateriaControlador instance = null;
 
-	/**
-	 * 
-	 */
 	public MateriaControlador() {
-		super(Materia.class, "centroeducativo");
+		super("materia", Materia.class);
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public static MateriaControlador getInstancia() {
-		if (instancia == null) {
-			instancia = new MateriaControlador();
+	public static MateriaControlador getInstance() {
+		if (instance == null) {
+			instance = new MateriaControlador();
 		}
-		return instancia;
+		return instance;
 	}
 
-	@Override
-	public Materia findFirst() {
-		return (Materia) super.findFirst();
-	}
-
-	@Override
-	public Materia findLast() {
-		return (Materia) super.findLast();
-	}
-
-	@Override
-	public Materia findNext(Entidad e) {
-		return (Materia) super.findNext(e);
-	}
-
-	@Override
-	public Materia findPrevious(Entidad e) {
-		return (Materia) super.findPrevious(e);
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public static List<Materia> findAllMaterias () {
-		List<Materia> entities = new ArrayList<Materia>();
-		EntityManager em = getEntityManagerFactory().createEntityManager();
-		try {			
-			Query q = em.createNativeQuery("SELECT * FROM materia", Materia.class);
-			entities = (List<Materia>) q.getResultList();
-		}
-		catch (NoResultException nrEx) {
-		}
-		em.close();
-		return entities;
-	}
-		
 }

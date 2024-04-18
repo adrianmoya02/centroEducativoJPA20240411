@@ -1,74 +1,38 @@
 package JPA20240411.controladores;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import tutorialJava.modelosBasesDeDatosComunesJPA.Controlador;
-import tutorialJava.modelosBasesDeDatosComunesJPA.Entidad;
-import tutorialJava.modelosBasesDeDatosComunesJPA.evaluacionCentroEducativo.Profesor;
+import JPA20240411.model.Materia;
+import JPA20240411.model.Profesor;
 
-public class ProfesorControlador extends Controlador {
 
-	// instancia del singleton
-	private static ProfesorControlador instancia = null;
+public class ProfesorControlador extends Controlador{
+	private static ProfesorControlador instance = null;
 
-	/**
-	 * 
-	 */
 	public ProfesorControlador() {
-		super(Profesor.class, "EvaluacionCentroEducativo");
+		super("profesor", Profesor.class);
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public static ProfesorControlador getInstancia() {
-		if (instancia == null) {
-			instancia = new ProfesorControlador();
+	public static ProfesorControlador getInstance() {
+		if (instance == null) {
+			instance = new ProfesorControlador();
 		}
-		return instancia;
-	}
-
-	@Override
-	public Profesor findFirst() {
-		return (Profesor) super.findFirst();
-	}
-
-	@Override
-	public Profesor findLast() {
-		return (Profesor) super.findLast();
-	}
-
-	@Override
-	public Profesor findNext(Entidad e) {
-		return (Profesor) super.findNext(e);
-	}
-
-	@Override
-	public Profesor findPrevious(Entidad e) {
-		return (Profesor) super.findPrevious(e);
+		return instance;
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public static List<Profesor> findAllProfesores () {
-		List<Profesor> entities = new ArrayList<Profesor>();
-		EntityManager em = getEntityManagerFactory().createEntityManager();
-		try {			
-			Query q = em.createNativeQuery("SELECT * FROM profesor", Profesor.class);
-			entities = (List<Profesor>) q.getResultList();
-		}
-		catch (NoResultException nrEx) {
-		}
-		em.close();
-		return entities;
-	}
-		
+	
+	
+	
+	
 }

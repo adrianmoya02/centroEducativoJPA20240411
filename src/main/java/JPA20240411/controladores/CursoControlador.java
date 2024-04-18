@@ -1,73 +1,92 @@
 package JPA20240411.controladores;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import tutorialJava.modelosBasesDeDatosComunesJPA.Controlador;
-import tutorialJava.modelosBasesDeDatosComunesJPA.Entidad;
-import tutorialJava.modelosBasesDeDatosComunesJPA.evaluacionCentroEducativo.Curso;
+import JPA20240411.model.Curso;
+
 
 public class CursoControlador extends Controlador {
-
-	// instancia del singleton
-	private static CursoControlador instancia = null;
-
-	/**
-	 * 
-	 */
-	public CursoControlador() {
-		super(Curso.class, "EvaluacionCentroEducativo");
+	
+	public CursoControlador(String nombreTabla, Class tipoEntidad) {
+		super(nombreTabla, tipoEntidad);
+		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public static CursoControlador getInstancia() {
-		if (instancia == null) {
-			instancia = new CursoControlador();
+
+	private static EntityManager em =  Persistence.createEntityManagerFactory("CentroEducativo").createEntityManager();
+	
+	private static String nombreTabla = "curso";
+
+	
+	
+	public static Curso getPrimero() {
+		Query q  = em.createNativeQuery("Select min(id) from "  + nombreTabla);
+		int primerId = (int) q.getSingleResult();
+		Curso c = em.find(Curso.class, primerId);
+		return c;
+	}
+
+	public static Curso getUltimo() {
+		Query q  = em.createNativeQuery("Select max(id) from "  + nombreTabla);
+		int primerId = (int) q.getSingleResult();
+		Curso c = em.find(Curso.class, primerId);
+		return c;
+	}
+
+	
+	public static Curso getFabricanteSiguienteAnterior(int id) {
+		return null;
+
+
+	}
+	
+	
+	
+
+	public static Curso getEntidad(Connection conn, String sql) throws SQLException {
+		Statement s = conn.createStatement();
+		ResultSet rs = s.executeQuery(sql);
+		Curso o = null;
+
+		if (rs.next()) {
+			o = new Curso();
+			o.setId(rs.getInt("id"));
+			o.setDescripcion(rs.getString("descripcion"));
+
 		}
-		return instancia;
+		return o;
+	}
+	
+	
+	public static List<Curso> getTodos(){
+		List<Curso> l = new ArrayList<Curso>();
+		
+
+		
+		return l;
 	}
 
-	@Override
-	public Curso findFirst() {
-		return (Curso) super.findFirst();
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-	@Override
-	public Curso findLast() {
-		return (Curso) super.findLast();
-	}
-
-	@Override
-	public Curso findNext(Entidad e) {
-		return (Curso) super.findNext(e);
-	}
-
-	@Override
-	public Curso findPrevious(Entidad e) {
-		return (Curso) super.findPrevious(e);
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public List<Curso> findAllCursos () {
-		List<Curso> entities = new ArrayList<Curso>();
-		EntityManager em = getEntityManagerFactory().createEntityManager();
-		try {			
-			Query q = em.createNativeQuery("SELECT * FROM curso", Curso.class);
-			entities = (List<Curso>) q.getResultList();
-		}
-		catch (NoResultException nrEx) {
-		}
-		em.close();
-		return entities;
-	}
 }
